@@ -1,0 +1,25 @@
+doctype html
+html(lang="en")
+  head
+    include partials/header
+  body.login
+    .contenedor-formulario
+      h1= pageName
+      if messages
+        .alertas
+          each category in Object.keys(messages)
+            each error in messages[category]
+              .alerta(class=`${category}`)
+                p= error
+      p Add your email to reset your password
+      form.caja-login(method="POST" action="/reset-password")
+        .campo
+          label(for="email") E-mail:
+          input(type="email" name="email" placerholder="Email" value= email)
+        .campo.enviar
+          input.boton(type="submit" value="Send you Email")
+        .campo.acciones
+          a(href="/login") I reminded it, Back to Login
+
+    // pre= locals.vardump(locals.messages)
+    // pre= locals.vardump(messages)
